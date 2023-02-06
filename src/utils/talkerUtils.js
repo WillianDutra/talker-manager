@@ -4,8 +4,13 @@ const path = require('path');
 const talkerPath = path.resolve(__dirname, '../talker.json');
 
 const readTalkerFile = async () => {
-  const contentFile = await fs.readFile(talkerPath);
-  return JSON.parse(contentFile);
+  const contentTalker = await fs.readFile(talkerPath);
+  return JSON.parse(contentTalker);
 };
 
-module.exports = { readTalkerFile };
+const getTalkerById = async (id) => {
+  const contentTalker = await readTalkerFile();
+  return contentTalker.find((talker) => talker.id === Number(id));
+};
+
+module.exports = { readTalkerFile, getTalkerById };
