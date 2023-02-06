@@ -8,8 +8,15 @@ const readTalkerFile = async () => {
   return JSON.parse(contentTalker);
 };
 
-const writeNewTalker = async (newTalker) => {
+const writeNewTalker = async (newTalker, id) => {
   const contentTalker = await readTalkerFile();
+  if (id) {
+    const withoutId = contentTalker.filter((talker) => talker.id !== Number(id));
+    const updatedTalker = { id: Number(id), ...newTalker };
+    const newTalkerData = JSON.stringify([...withoutId, updatedTalker]);
+    await fs.writeFile(talkerPath, newTalkerData, 'utf-8', { flag: 'wx' });
+    return;
+  }
   const newTalkerId = (contentTalker.length + 1);
   const talkerWithId = { id: newTalkerId, ...newTalker };
   const newTalkerData = JSON.stringify([talkerWithId, ...contentTalker]);
@@ -21,4 +28,9 @@ const getTalkerById = async (id) => {
   return contentTalker.find((talker) => talker.id === Number(id));
 };
 
-module.exports = { readTalkerFile, writeNewTalker, getTalkerById };
+const getTalkerWithoutId = async (id) => {
+  const contentTalker = await readTalkerFile();
+  return contentTalker.filter((talker) => talker.id !== Number(id));
+};
+
+module.exports = { readTalkerFile, writeNewTalker, getTalkerById, getTalkerWithoutId };
