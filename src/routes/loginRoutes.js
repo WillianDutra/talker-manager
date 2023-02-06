@@ -1,10 +1,10 @@
 const express = require('express');
-const { tokenGenerator, validateEmail } = require('../utils/talkerLogin');
+const { writeNewLogin, tokenGenerator, validateEmail } = require('../utils/talkerLogin');
 
 const login = express.Router();
 
-login.post('/', (req, res) => {
- const { email, password } = req.body;
+login.post('/', async (req, res) => {
+  const { email, password } = req.body;
  const emailVerify = validateEmail(email);
  const token = tokenGenerator();
   if (!email) {
@@ -19,6 +19,8 @@ login.post('/', (req, res) => {
   if (password.length < 6) {
     return res.status(400).json({ message: 'O "password" deve ter pelo menos 6 caracteres' });
   }
+  const loginWithToken = { email, password, token };
+  await writeNewLogin(loginWithToken);
   return res.status(200).json({ token });
 });
 
