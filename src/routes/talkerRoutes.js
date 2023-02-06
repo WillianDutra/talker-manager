@@ -1,5 +1,8 @@
 const express = require('express');
-const { readTalkerFile, getTalkerById } = require('../utils/talkerUtils');
+const { readTalkerFile, writeNewTalker, getTalkerById } = require('../utils/talkerUtils');
+const {
+  checkToken, checkUser, checkAge, checkTalk, checkRate,
+} = require('../middlewares/validateTalker');
 
 const talker = express.Router();
 
@@ -22,6 +25,18 @@ talker.get('/:id', async (req, res) => {
     return res.status(200).json(talkerById);
   } catch (err) {
     return res.status(500).json({ message: err });
+  }
+});
+
+talker.post('/', checkToken, checkUser, checkAge, checkTalk, checkRate, async (req, res) => {
+  try {
+    const { name, age, talk } = req.body;
+    await writeNewTalker({ name, age, talk });
+    const contentTalker = await readTalkerFile();
+    const newTalker = { id: (contentTalker.length), name, age, talk };
+    return res.status(201).json(newTalker);
+  } catch (err) {
+    res.status(500).json({ message: err });
   }
 });
 
