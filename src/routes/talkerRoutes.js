@@ -1,6 +1,6 @@
 const express = require('express');
 const {
-  readTalkerFile, getTalkerById, filterWriteTalker, deleteUser,
+  readTalkerFile, getTalkerById, filterWriteTalker, deleteUser, filterByName,
 } = require('../utils/talkerUtils');
 
 const {
@@ -8,6 +8,12 @@ const {
 } = require('../middlewares/validateTalker');
 
 const talker = express.Router();
+
+talker.get('/search', checkToken, async (req, res) => {
+  const { q } = req.query;
+  const filteredTalkers = await filterByName(q);
+  res.status(200).json(filteredTalkers);
+});
 
 talker.get('/', async (_req, res) => {
   try {

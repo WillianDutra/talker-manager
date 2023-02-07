@@ -41,6 +41,18 @@ const deleteUser = async (id) => {
   await writeTalker(allTalkers);
 };
 
+const filterByName = async (name) => {
+  const contentTalker = await readTalkerFile();
+  const filteredTalkers = contentTalker.filter((talker) => talker.name.includes(name));
+  return filteredTalkers;
+};
+
 module.exports = {
-  readTalkerFile, filterWriteTalker, getTalkerById, getTalkerWithoutId, writeTalker, deleteUser,
+  readTalkerFile,
+  filterWriteTalker,
+  getTalkerById,
+  getTalkerWithoutId,
+  writeTalker,
+  deleteUser,
+  filterByName,
 };
