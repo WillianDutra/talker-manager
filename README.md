@@ -19,6 +19,8 @@ Caso queira instalar o projeto e dar uma olhada mais de perto.
   git clone git@github.com:WillianDutra/talker-manager.git
   # Entrando na pasta
   cd talker-manager
+  # Instalando as dependências
+  npm install
   # Iniciando a aplicação
   npm start
   # Agora é só fazer as requisições no localhost:3000
