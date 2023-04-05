@@ -1,13 +1,24 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+## Talker Manager
+Uma simples aplicacao para introducao ao Node.js, os dados são salvos em um arquivo local e não e utilizado banco de dados.
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+## Apredizados com este projeto
+
+- Node.js
+- Javascript
+- Docker
+
+
+## Instalação
+
+Caso queira instalar o projeto e dar uma olhada mais de perto.
+
+```bash
+  # Clonando o projeto
+  git clone git@github.com:WillianDutra/talker-manager.git
+  # Entrando na pasta
+  cd talker-manager
+  # Iniciando a aplicação
+  npm start
+  # Agora é só fazer as requisições no localhost:3000
+```
