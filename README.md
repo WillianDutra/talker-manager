@@ -3,7 +3,7 @@ Uma simples aplicação para introducao ao Node.js, os dados são salvos em um a
 
 Um projeto individual, onde alguns arquivos já prontos foram disponibilizados pela [Trybe](https://www.betrybe.com/).
 
-## Apredizados com este projeto
+## Aprendizados com este projeto
 
 - Node.js
 - Javascript
